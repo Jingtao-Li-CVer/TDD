@@ -1,0 +1,114 @@
+runner_module: runners.runner_TDD - runner_TDD  
+random_seed: 111
+params:
+  epochs: 200 
+  device: cuda:0
+  batch_size: 1 
+  training_channels: 46
+  image_size: 224
+  warm_up_n_iters: 100
+
+model: 
+  name: models.TDD_seg_model - TDD_seg_model  
+  args: 
+    n_channels: 46
+  ckpt_dir: ''
+  R: 3.0
+ 
+transforms: 
+  train: 
+  - name: albumentations - ToFloat
+    args:
+      max_value: 249., 249., 252., 251., 254., 252., 251., 237., 238., 234., 231.,
+       236., 236., 230., 237., 235., 230., 232., 234., 232., 239., 237.,
+       240., 239., 241., 245., 242., 241., 245., 244., 243., 246., 244.,
+       244., 243., 245., 247., 246., 247., 253., 253., 254., 254., 254.,
+       251., 252.
+  - name: albumentations - Resize
+    args:
+      height: ${params.image_size}
+      width: ${params.image_size}
+      p: 1 
+      interpolation: 0
+  - name: albumentations.pytorch - ToTensorV2
+    args:
+      p: 1
+  test:
+  - name: albumentations - Resize
+    args:
+      height: ${params.image_size}
+      width: ${params.image_size}
+      interpolation: 0
+      p: 1
+  - name: albumentations.pytorch - ToTensorV2
+    args:
+      p: 1
+datasets:
+  train:
+    name: datasets.HSIDataset_Training - HSIDataset_Training
+    args:
+      img_dir: /home/luojianet/ljt21/TDD/data/Cri/training_patches/img_patch_100_stride_100
+      mask_dir: /home/luojianet/ljt21/TDD/data/Cri/training_patches/label_patch_100_stride_100
+      max_height: 70
+      min_height: 40
+  test:
+    name: datasets.HSIDataset_Inferring - HSIDataset_Inferring
+    args:
+      img_dir:
+      - /home/luojianet/ljt21/TDD/data/HYDICE/image.img
+      - /home/luojianet/ljt21/TDD/data/Cri/Cri.img
+      - /home/luojianet/ljt21/TDD/data/WHU-Hi-River/WHU-Hi-River.img
+      - /home/luojianet/ljt21/TDD/data/AVIRIS-1/image.img
+      mask_dir:
+      - /home/luojianet/ljt21/TDD/data/HYDICE/mask_urban.img
+      - /home/luojianet/ljt21/TDD/data/Cri/cri_mask.img
+      - /home/luojianet/ljt21/TDD/data/WHU-Hi-River/Target_mask.img
+      - /home/luojianet/ljt21/TDD/data/AVIRIS-1/label.img
+      test_patch_sizes:
+      - 10
+      - 100
+      - 20
+      - 50
+      test_pad_sizes:
+      - 5
+      - 100
+      - 10
+      - 25
+      normalize:
+      - true
+      - true
+      - false
+      - true
+      test_input_sizes:
+      - 224
+      - 224
+      - 224
+      - 224
+      training_channels: ${params.training_channels}
+dataloaders:
+  train:
+    name: torch.utils.data - DataLoader
+    args:
+      batch_size: ${params.batch_size}
+      num_workers: 3
+      pin_memory: true
+      shuffle: true
+  test:
+    name: torch.utils.data - DataLoader
+    args:
+      batch_size: 1
+      num_workers: 3
+      pin_memory: true
+      shuffle: false
+optimizer:
+  name: torch.optim - Adam
+  args:
+    lr: 0.0001
+    weight_decay: 1.0e-05
+scheduler:
+  name: torch.optim.lr_scheduler - CosineAnnealingWarmRestarts
+  args:
+    T_0: 10
+    T_mult: 2
+    eta_min: 0.0001
+    last_epoch: -1
