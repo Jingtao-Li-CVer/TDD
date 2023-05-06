@@ -27,7 +27,7 @@ class HSIDataset_Training(Dataset):
             ])
   
         self.shift_transform =A.Compose([A.ShiftScaleRotate(shift_limit=0.0, p=1), A.IAAPiecewiseAffine(scale=(0.1, 0.3), p=1.0, order=0)])
-        self.shulle_transform = A.ChannelShuffle(p=1.0)
+        self.shuffle_transform = A.ChannelShuffle(p=1.0)
 
         logging.info(f'Creating dataset with {self.dataset_length} examples') 
 
@@ -46,7 +46,7 @@ class HSIDataset_Training(Dataset):
         sample = self.location_selection(image=img, mask = mask)
 
         p_t = random.random() 
-        img2 = self.shulle_transform(image=img)['image']
+        img2 = self.shuffle_transform(image=img)['image']
         
         locs = np.where(sample['mask'] == 1)
         sample['image'][locs[0], locs[1], :] = img2[locs[0], locs[1], :] 
