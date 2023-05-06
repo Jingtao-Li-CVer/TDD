@@ -13,10 +13,10 @@ import torch.multiprocessing as mp
 
 warnings.filterwarnings('ignore')
  
-# config_path = sys.argv[1]  
-# sys.argv.pop(1)
+config_path = sys.argv[1]  
+sys.argv.pop(1)
  
-config_path = '/home/luojianet/ljt21/TDD/configs/AVIRIS/TDD_config.yaml'
+# config_path = './configs/HYDICE/TDD_config.yaml'
 
 @hydra.main(config_path)
 def main(cfg: DictConfig) -> None:
