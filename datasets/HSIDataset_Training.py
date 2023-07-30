@@ -14,9 +14,8 @@ import random
 
 
 class HSIDataset_Training(Dataset): 
-    def __init__(self, img_dir, mask_dir, max_height, min_height, transforms):
+    def __init__(self, img_dir, max_height, min_height, transforms):
         self.img_dir = img_dir
-        self.mask_dir = mask_dir
         self.transform = transforms
 
         self.img_files = os.listdir(self.img_dir)
