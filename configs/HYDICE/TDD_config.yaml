@@ -54,7 +54,6 @@ datasets:
     name: datasets.HSIDataset_Training - HSIDataset_Training
     args:
       img_dir: /home/luojianet/ljt21/TDD/data/HYDICE/training_patches/img_patch_10_stride_5
-      mask_dir: /home/luojianet/ljt21/TDD/data/HYDICE/training_patches/label_patch_10_stride_5
       max_height: 7
       min_height: 4
   test:
