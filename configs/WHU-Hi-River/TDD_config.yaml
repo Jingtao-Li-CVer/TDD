@@ -44,7 +44,6 @@ datasets:
     name: datasets.HSIDataset_Training - HSIDataset_Training
     args:
       img_dir: /home/luojianet/ljt21/TDD/data/WHU-Hi-River/training_patches/img_patch_20_stride_10
-      mask_dir: /home/luojianet/ljt21/TDD/data/WHU-Hi-River/training_patches/label_patch_20_stride_10
       max_height: 13
       min_height: 7
   test:
