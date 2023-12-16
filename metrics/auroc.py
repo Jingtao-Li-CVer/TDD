@@ -45,7 +45,7 @@ def compute_auroc(epoch: int, ep_reconst, ep_gt, working_dir: str, image_level=F
     scoreFt = abs(integrate.trapz(fpr, thresholds))
     scoreTD = scoreDF + scoreDt
     scoreBS = scoreDF - scoreFt
-    scoreODP = scoreDF + scoreDt - scoreFt
+    scoreODP = 1 + scoreDt - scoreFt
     scoreTDBS = scoreDt - scoreFt
     scoreSNPR = scoreDt / scoreFt
     logging.info("scoreDF: " + str(scoreDF))
