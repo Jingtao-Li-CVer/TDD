@@ -116,11 +116,11 @@ def main(config: dict):
 if __name__ == '__main__':
     single_image = True # crop single image or images in a folder
     only_crop_image = False # crop single image or both image and label
-    img_folder_path = r"./data/AVIRIS-1/image.img" # single image path or folder path 
-    label_folder_path = './data/AVIRIS-1/label.img' # single label path or folder path 
-    save_path = r"./data/AVIRIS-1/training_patches"  # saved path of cropped patches
-    patch_size = 50
-    stride = 25
+    img_folder_path = r"./data/HYDICE/image.img" # single image path or folder path 
+    label_folder_path = './data/HYDICE/label.img' # single label path or folder path 
+    save_path = r"./data/HYDICE/training_patches"  # saved path of cropped patches
+    patch_size = 20
+    stride = 10
     filename_difference = {'img': "", 'label': ""} 
     img_extension = 'tif'  
     label_extension = 'tif'
