@@ -39,7 +39,7 @@ background distribution as most models do, the spectral deviation relationship i
 ### Model Training and Testing
 
 1. TDD can be trained on any hyperspectral image and inferred directly on other images.
-2. The training image needs to be cropped for patches with the script `utils/cropping.py`. For the four datasets in the paper, the patches have already be cropped in the given downloaded link.
+2. The training image needs to be cropped for patches with the script `utils/cropping.py`. For the HYDICE dataset in the paper, its patches have already be cropped in the given downloaded link.
 3. Starting the training and testing process using the following command.
 ```
 python run.py 'config_fie_path'
