@@ -9,6 +9,7 @@ from utils.img_io import read_img, write_img
 import numpy as np
 from albumentations.pytorch import ToTensorV2
 from random import choice
+from skimage.transform import resize
 import albumentations as A
 import random
 
@@ -39,7 +40,11 @@ class HSIDataset_Training(Dataset):
              
         img_path = os.path.join(self.img_dir, file_name)
 
-        img = read_img(img_path=img_path)        
+        img = read_img(img_path=img_path).astype(np.float32)
+        max_values = img.max((0,1))
+        max_values[max_values == 0] = 1
+        img = img/max_values 
+
         mask = np.zeros((img.shape[0], img.shape[1])) 
 
         sample = self.location_selection(image=img, mask = mask)
