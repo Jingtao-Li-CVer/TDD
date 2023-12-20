@@ -119,8 +119,8 @@ if __name__ == '__main__':
     img_folder_path = r"./data/HYDICE/image.img" # single image path or folder path 
     label_folder_path = './data/HYDICE/label.img' # single label path or folder path 
     save_path = r"./data/HYDICE/training_patches"  # saved path of cropped patches
-    patch_size = 20
-    stride = 10
+    patch_size = 40
+    stride = 20
     filename_difference = {'img': "", 'label': ""} 
     img_extension = 'tif'  
     label_extension = 'tif'
