@@ -45,8 +45,22 @@ class HSIDataset_Training(Dataset):
 
         sample = self.location_selection(image=img, mask = mask)
 
-        p_t = random.random() 
+        # Strategy 1: Channel shuffling
         img2 = self.shuffle_transform(image=img)['image']
+        
+        # # Strategy 2: Adding Gaussian Noise
+        # img_noise = np.random.normal(0, 1, img.shape)
+        # img2 = img + img_noise
+        # max_values = img2.max((0,1))
+        # max_values[max_values == 0] = 1
+        # img2 = img2/max_values         
+
+        # # Strategy 3: Adding Uniform Noise
+        # img_noise = np.random.rand(img.shape[0], img.shape[1], img.shape[2])
+        # img2 = img + img_noise
+        # max_values = img2.max((0,1))
+        # max_values[max_values == 0] = 1
+        # img2 = img2/max_values     
         
         locs = np.where(sample['mask'] == 1)
         sample['image'][locs[0], locs[1], :] = img2[locs[0], locs[1], :] 
