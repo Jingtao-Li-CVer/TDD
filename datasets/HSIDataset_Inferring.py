@@ -46,7 +46,7 @@ class HSIDataset_Inferring(Dataset):
             img = read_img(img_path=img_path).astype(np.float32)
 
         if img.shape[2] < self.training_channels:
-            img = resize(img, (img.shape[0], img.shape[1], self.training_channels))
+            img = resize(img, (img.shape[0], img.shape[1], self.training_channels), order=1)
 
         if self.normalize[i]:
             img = img/img.max((0,1))
