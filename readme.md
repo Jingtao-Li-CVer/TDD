@@ -4,7 +4,7 @@
   <img src=./figs/model_workflow.jpg width="600"> 
 </p>
 
-This is a PyTorch implementation of the [TDD model](https://arxiv.org/abs/2303.12342):
+This is a PyTorch implementation of the [TDD model](https://arxiv.org/abs/2303.12342): 
 ```
 @article{li2023one,
   title={One-Step Detection Paradigm for Hyperspectral Anomaly Detection via Spectral Deviation Relationship Learning},
