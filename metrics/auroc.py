@@ -15,7 +15,7 @@ import sys
 sys.path.append("/home/ljt21/ad/RSAD/metrics/")
 
 
-def compute_auroc(epoch: int, ep_amaps, ep_gt, working_dir: str, image_level=False, save_image=False,) -> float:
+def compute_auroc(epoch: int, ep_amaps, ep_gt, working_dir: str, save_image=False,) -> float:
     """Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC)
     Args:
         epoch (int): Current epoch
