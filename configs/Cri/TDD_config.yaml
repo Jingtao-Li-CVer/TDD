@@ -48,8 +48,8 @@ datasets:
     name: datasets.HSIDataset_Training - HSIDataset_Training
     args:
       img_dir: /home/luojianet/ljt21/TDD/data/Cri/training_patches/img_patch_100_stride_100
-      max_height: 70
-      min_height: 40
+      max_height: 30
+      min_height: 20
   test:
     name: datasets.HSIDataset_Inferring - HSIDataset_Inferring
     args:
