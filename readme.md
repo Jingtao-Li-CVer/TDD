@@ -4,8 +4,19 @@
   <img src=./figs/model_workflow.jpg width="600"> 
 </p>
 
-This is a PyTorch implementation of the [TDD model](https://arxiv.org/abs/2303.12342): 
+This is a PyTorch implementation of the [TDD model](https://ieeexplore.ieee.org/abstract/document/10506667): 
 ```
+@ARTICLE{10506667,
+  author={Li, Jingtao and Wang, Xinyu and Wang, Shaoyu and Zhao, Hengwei and Zhong, Yanfei},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={One-Step Detection Paradigm for Hyperspectral Anomaly Detection via Spectral Deviation Relationship Learning}, 
+  year={2024},
+  volume={62},
+  number={},
+  pages={1-15},
+  keywords={Task analysis;Hyperspectral imaging;Image reconstruction;Detectors;Training;Deep learning;Anomaly detection;Anomaly detection;deep learning;hyperspectral imagery (HSI);spectral deviation;unified model},
+  doi={10.1109/TGRS.2024.3392189}}
+
 @article{li2023one,
   title={One-Step Detection Paradigm for Hyperspectral Anomaly Detection via Spectral Deviation Relationship Learning},
   author={Li, Jingtao and Wang, Xinyu and Wang, Shaoyu and Zhao, Hengwei and Zhang, Liangpei and Zhong, Yanfei},
