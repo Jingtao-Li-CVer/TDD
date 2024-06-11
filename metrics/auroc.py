@@ -47,7 +47,9 @@ def compute_auroc(epoch: int, ep_amaps, ep_gt, working_dir: str, save_image=Fals
     scoreBS = scoreDF - scoreFt
     scoreODP = 1 + scoreDt - scoreFt
     scoreTDBS = scoreDt - scoreFt
+    scoreMDP = scoreDt + 1 - scoreFt
     scoreSNPR = scoreDt / scoreFt
+    scoreOADP = scoreDF + scoreDt + 1 - scoreFt
     logging.info("scoreDF: " + str(scoreDF))
     logging.info("scoreDt: " + str(scoreDt))
     logging.info("scoreFt: " + str(scoreFt))
@@ -55,7 +57,9 @@ def compute_auroc(epoch: int, ep_amaps, ep_gt, working_dir: str, save_image=Fals
     logging.info("scoreBS: " + str(scoreBS))
     logging.info("scoreODP: " + str(scoreODP))
     logging.info("scoreTDBS: " + str(scoreTDBS))
+    logging.info("scoreMDP: " + str(scoreMDP))
     logging.info("scoreSNPR: " + str(scoreSNPR))
+    logging.info("scoreOADP: " + str(scoreOADP))
 
 
     if save_image:
