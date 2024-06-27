@@ -60,6 +60,14 @@ For example, to train the TDD model on the HYDICE dataset and infer on all four 
 python run.py ./configs/HYDICE/TDD_config.yaml
 ```
 
+### Infer Only Without Labels
+
+1. Modify the image paths and inferring settings (ckpt dir, infer patch size, etc.) in the Infer_config.yaml
+```
+python run.py './configs/Infer_config.yaml'
+```
+
+
 
 ### Trained checkpoint
 
