@@ -81,8 +81,9 @@ class BaseRunner(ABC):
         self.model.to(self.cfg.params.device)
         
         for epoch in pbar:
-            # self._test(epoch)
-            # exit(0)
+            if self.cfg.runner_module == 'runners.runner_TDD_Infer - runner_TDD_Infer':
+                self._test(epoch)
+                exit(0)
             
             self._train(epoch)
 
