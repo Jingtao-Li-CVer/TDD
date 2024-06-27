@@ -1,0 +1,68 @@
+runner_module: runners.runner_TDD_Infer - runner_TDD_Infer  
+random_seed: 111
+params:
+  epochs: 200 
+  device: cuda:0
+  batch_size: 1 
+  training_channels: 162
+  image_size: 224
+  warm_up_n_iters: 100
+
+model: 
+  name: models.TDD_seg_model - TDD_seg_model  
+  args: 
+    n_channels: 162
+  ckpt_dir: /home/ljt21/TDD/ckpts
+  R: 3.0
+ 
+transforms: 
+  test:
+  - name: albumentations - Resize
+    args:
+      height: ${params.image_size}
+      width: ${params.image_size}
+      interpolation: 0
+      p: 1
+  - name: albumentations.pytorch - ToTensorV2
+    args:
+      p: 1
+datasets:
+  test:
+    name: datasets.HSIDataset_Inferring_Only - HSIDataset_Inferring_Only
+    args:
+      img_dir:
+      - /home/ljt21/light-RSAD/had_data/aviris-1/image.img
+      - /home/ljt21/light-RSAD/had_data/ABU/airport/abu-airport-2-image.tif
+      test_patch_sizes:
+      - 100
+      - 50
+      test_pad_sizes:
+      - 100
+      - 25
+      normalize:
+      - true
+      - true
+      test_input_sizes:
+      - 224
+      - 224
+      training_channels: ${params.training_channels}
+dataloaders:
+  test:
+    name: torch.utils.data - DataLoader
+    args:
+      batch_size: 1
+      num_workers: 3
+      pin_memory: true
+      shuffle: false
+optimizer:
+  name: torch.optim - Adam
+  args:
+    lr: 0.0001
+    weight_decay: 1.0e-05
+scheduler:
+  name: torch.optim.lr_scheduler - CosineAnnealingWarmRestarts
+  args:
+    T_0: 10
+    T_mult: 2
+    eta_min: 0.0001
+    last_epoch: -1
