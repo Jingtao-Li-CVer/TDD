@@ -79,6 +79,8 @@ python run.py './configs/Infer_config.yaml'
 ckpt_dir: ./ckpts/
 ```
 
+ &emsp;3. To reproduce the results in paper, comment the line 128 in TDD/runners/runner_TDD.py. We add the line for suppressing the influence of high-reflectance area.
+
 ### Qualitative result  
 
  &emsp;The following are the qualitative results of TDD trained on the HYDICE dataset, with direct inference from the four datasets.
