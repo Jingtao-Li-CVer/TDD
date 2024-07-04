@@ -14,8 +14,8 @@ import albumentations as A
 
 
 class HSIDataset_Inferring_Only(Dataset):
-    def __init__(self, img_dir, test_input_sizes, test_patch_sizes, test_pad_sizes, training_channels, normalize, transforms):
-        self.img_dir = img_dir
+    def __init__(self, img_paths, test_input_sizes, test_patch_sizes, test_pad_sizes, training_channels, normalize, transforms):
+        self.img_paths = img_paths
         self.test_patch_sizes = test_patch_sizes
         self.training_channels = training_channels
         self.test_pad_sizes = test_pad_sizes
@@ -23,7 +23,7 @@ class HSIDataset_Inferring_Only(Dataset):
         self.test_input_size = test_input_sizes
         self.transform = transforms
 
-        self.dataset_length = len((self.img_dir))
+        self.dataset_length = len((self.img_paths))
 
         logging.info(f'Creating dataset with {self.dataset_length} examples')
 
@@ -31,7 +31,7 @@ class HSIDataset_Inferring_Only(Dataset):
         return self.dataset_length
  
     def __getitem__(self, i):
-        img_path = self.img_dir[i]
+        img_path = self.img_paths[i]
         test_patch_size = self.test_patch_sizes[i]
         test_pad_size = self.test_pad_sizes[i]
         test_input_size = self.test_input_size[i]
