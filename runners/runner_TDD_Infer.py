@@ -27,6 +27,18 @@ class runner_TDD_Infer(BaseRunner):
         pass
 
     def _test(self, epoch: int) -> None:
+        def normalize_prediction(predicted_test_overlap, mb_img):
+            predicted_test_overlap = predicted_test_overlap.astype(float)
+
+            mb_img_np = mb_img.numpy()
+            max_values = np.max(mb_img_np, axis=1, keepdims=True)  # axis=1 
+            max_values = max_values[0, 0, :, :] 
+            max_values = np.expand_dims(max_values, axis=2)
+            max_values[max_values == 0] = 1
+
+            normalized_prediction = predicted_test_overlap / max_values
+            return normalized_prediction
+
         self.model.eval()
         save_dir = os.path.join(self.working_dir, "epochs-" + str(epoch))
         if not os.path.exists(save_dir):
@@ -71,6 +83,7 @@ class runner_TDD_Infer(BaseRunner):
                     padding_mode='mirror', num_classes=1, device=self.cfg.params.device, test_size=self.test_input_sizes[i])  
                     data_overlap_input = img_t.squeeze(0).permute(1, 2, 0).cpu().numpy().astype(np.float32)
                     predicted_test_overlap = (predicted_test_overlap + overlap_infer(cfg_test, model=self.model, img=data_overlap_input)['score_map'])/2.0
+                    predicted_test_overlap = normalize_prediction(predicted_test_overlap, mb_img)
             
             save_path = os.path.join(self.working_dir, "epochs-" + str(epoch))
             if not os.path.exists(save_path):
