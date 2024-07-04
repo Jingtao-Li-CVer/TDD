@@ -30,7 +30,7 @@ datasets:
   test:
     name: datasets.HSIDataset_Inferring_Only - HSIDataset_Inferring_Only
     args:
-      img_dir:
+      img_paths:
       - /home/ljt21/light-RSAD/had_data/aviris-1/image.img
       - /home/ljt21/light-RSAD/had_data/ABU/airport/abu-airport-2-image.tif
       test_patch_sizes:
