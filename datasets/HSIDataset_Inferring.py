@@ -41,7 +41,7 @@ class HSIDataset_Inferring(Dataset):
         (_, img_file_name) = os.path.split(img_path)
         img_file_name = img_file_name.split('.')[-2]
         if 'River' in img_path:
-            img = read_img(img_path=img_path)
+            img = read_img(img_path=img_path).astype(np.int16)
         else:
             img = read_img(img_path=img_path).astype(np.float32)
 
