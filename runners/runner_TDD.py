@@ -125,7 +125,7 @@ class runner_TDD(BaseRunner):
                     padding_mode='mirror', num_classes=1, device=self.cfg.params.device, test_size=self.test_input_sizes[i])  
                     data_overlap_input = img_t.squeeze(0).permute(1, 2, 0).cpu().numpy().astype(np.float32)
                     predicted_test_overlap = (predicted_test_overlap + overlap_infer(cfg_test, model=self.model, img=data_overlap_input)['score_map'])/2.0
-                    predicted_test_overlap = normalize_prediction(predicted_test_overlap, mb_img)
+                    # predicted_test_overlap = normalize_prediction(predicted_test_overlap, mb_img)
 
                 artifacts["amap"].extend(predicted_test_overlap.transpose(2,0,1))
             
