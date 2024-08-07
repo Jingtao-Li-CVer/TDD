@@ -53,9 +53,9 @@ datasets:
   train:
     name: datasets.HSIDataset_Training - HSIDataset_Training
     args:
-      img_dir: /home/luojianet/ljt21/TDD/data/HYDICE/training_patches/img_patch_40_stride_20
-      max_height: 13
-      min_height: 7
+      img_dir: /home/luojianet/ljt21/TDD/data/HYDICE/training_patches/img_patch_10_stride_5
+      max_height: 7
+      min_height: 5
   test:
     name: datasets.HSIDataset_Inferring - HSIDataset_Inferring
     args:
